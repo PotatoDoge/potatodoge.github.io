@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Week 1 -- No river can return to its source, yet all rivers must have a beginning.."
+date:   2022-10-03 12:14:38 -0700
+categories: jekyll update
+---
+
+Starting a new job is never easy. You could compare this situation with your first day at a new school, where you do not know anyone, where you do not know how things work there and especially you do not know how things will be for you; hopefully easy. The secret to being successful is to always give your best, put in your best effort in whatever you are doing and to never give up no matter what. 
+
+My first week at Encora was nothing but full of new experiences, new people and a new culture. The first day we had a welcome call with the staff of ‘People and Culture’, in which they explained to us some basic information regarding the company, gave us a few tips to follow, explained to us how we were going to communicate inside the company (by using slack) and basically gave us the welcome to Encora. 
+
+On the following days, we had different meetings, in which some of the company’s departments and some teams were presented to us. For example, we had a meeting with the Office Management staff, in which they explained to us what they do inside the company, and how they could help us at any time in the future. We also had a Safe Spaces meeting, during which some core values were introduced to us, as well as the concept of diversity, perspective and empathy (fundamental values inside Encora). We also had a meeting/workshop/conference regarding feedback, which is an important tool when developing a project. We were explained on how to both receive and give proper feedback while in a team.  
+
+We also had an IT security meeting. They explained to us the do’s and do not’s regarding digital security. It is important to be careful with our information because if you are not, you could leak some restricted information and that could be dangerous for everyone.   
+
+Another workshop that we were given was one about Agile development. We were explained on how does an agile team work, how to properly define our project in an agile way, and different terminology regarding agile methodologies.   
+
+I am really excited about working here at Encora, and I hope to get to know new people, to get to learn a lot from my coworkers and to show the recruiting team that they made a good decision by giving me the opportunity of being part of the Apprentice program.  

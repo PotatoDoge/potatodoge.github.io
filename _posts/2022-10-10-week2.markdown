@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "Week 2 -- Education is not the filling of a pot but the lighting of a fire."
+date:   2022-10-10 12:14:38 -0700
+categories: jekyll update
+---
+
+This second week has been more focused on technical things, such as learning programming fundamentals, more specifically Java fundamentals. Throughout my 4 years of university, Java has been the predilected programming language for mostly all my projects. Due to this, I am rather familiarized with its syntaxis, best practices and basically any common and basic knowledge regarding it. Nonetheless, I believe that it is always a good idea to go through the basics when you have a chance to do so.  
+
+Learning a new programming language can always be difficult, but in my case, I see it as a challenge, and I really like being challenged. This week I went through some basics that I’ve already previously mastered, but it reminded me of what it is to start a new challenge, which is what I am really looking forward to in my time here at Encora.  
+
+Leaving the technical stuff aside, we had an interesting meeting regarding how to handle contact with a client, and how to have efficient, and proper, communication. This last thing is the basic element, and skill, for proper business. If what the client wants is not clear, the product cannot be properly developed.   
+
+In conclusion, this week was not as saturated as last week, although this week we focused on important things such as communication with a client and Java fundamentals.  
+
+
