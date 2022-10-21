@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Week 1 -- No river can return to its source, yet all rivers must have a beginning.."
+title:  "Week 1 -- No river can return to its source, yet all rivers must have a beginning."
 date:   2022-10-03 12:14:38 -0700
 categories: jekyll update
 ---
