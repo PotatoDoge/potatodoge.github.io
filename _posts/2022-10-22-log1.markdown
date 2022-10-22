@@ -1,0 +1,64 @@
+---
+layout: post
+title:  "Log 1 - Double or one thing."
+date:   2022-10-22 8:22:38 -0700
+categories: jekyll update
+---
+Coding is the easy part, what takes more time is designing the logic itself and an algorithm (set of instructions) to properly solve the problem in the best way possible, or at least in the best way that you can think of. Everyone has a unique way of thinking, a distinctive way of analyzing a problem and finding a solution, so let me explain how do I normally solve this kind of problems.
+
+I usually try to divide the problem, that I am trying to solve, into smaller pieces. A problem is a set of small problems that are together. In order to solve the bigger problem, you must start solving each one of the small tasks. It is like building a LEGO set, you have to put the small pieces together, and at the end you have a big castle, or a car, or whatever set you are building. 
+
+### *What is double or one thing about?*
+> You are given a string of uppercase English letters. You can highlight any number of the letters (possibly all or none of them). The highlighted letters do not need to be consecutive. Then, a new string is produced by processing the letters from left to right: non-highlighted letters are appended once to the new string, while highlighted letters are appended twice.
+
+>Given a string, there are multiple strings that can be obtained as a result of this process, depending on the highlighting choices. Among all of those strings, output the one that appears first in alphabetical (also known as lexicographical) order.
+
+>A string s appears before a different string t in alphabetical order if s is a prefix of t or if at the first place s and t differ, the letter in s is earlier in the alphabet than the letter in t. For example, these strings are in alphabetical order: CODE, HELLO, HI, HIM, HOME, JAM.
+
+Here is the code that I came up with to solve this problem:
+    
+```python
+def solution(inp):
+    repeat = 1 # number of times that a letter is repeated consecutively
+    answer = ""
+        
+    # 'A' < 'B', 'K' > 'H', 'C' < 'D' 
+    for l in range(len(inp)-1):
+        if inp[l] == inp[l+1]: 
+            repeat+=1
+        else:
+            if repeat>1: # if the current letter is at least repeated once more next to it 'aa' repeat = 2, 'bbb' repeat =3....
+                if inp[l] < inp[l+1]:
+                    t = inp[l]*repeat*2 # example: peel -> inp[l] = 'e' , inp[l+1] = 'l' -> 'e'<'l' --> peeeel
+                    answer+=t
+                else:     # if, alphabetically, the letter is greater than the next one
+                    answer+=inp[l]*repeat   #example: ziih -> inp[l] = 'i', inp[l+1] = 'h' -> 'i'>'h' --> ziih
+                repeat = 1
+            else:     #if the current letter is different than the previous and the next one
+                if inp[l] < inp[l+1]:     # if, alphabetically, the letter is less than the next one 
+                    answer+=inp[l]*2     # example: cat -> inp[l] = 'a' , inp[l+1] = 't' -> 'a'<'t' --> caat
+                else:
+                    answer+=inp[l]      # example: dog -> inp[l] = 'o', inp[l+1] = 'g' -> 'o'>'g' --> dog
+
+    t = inp[len(inp)-1] # last letter of the input
+    if repeat>1:
+        t = inp[len(inp)-1]*repeat
+    answer += t
+    return answer
+
+if __name__ == '__main__':
+    cases = int((input())) # number of test cases
+    for t in range(0,cases):
+        case = str(input()) # test case input
+        print('Case #{}:'.format(t+1),solution(case))
+```
+
+### *Explaining the code*
+Okay, so let's start with the simplest part of the code, which are the last 5 lines. In those lines, the code asks for how many test cases there will be, calculates the answer and prints it out. 
+
+Now, let's focus on the ```def solution(inp)``` function. It receives ```inp``` as a parameter which is the word to be 'transformed'. Two variables are created: ```repeat``` and ```answer```. The first one counts how many times a letter appears consecutively. For example, if we were to analyze the word 'pineapple', only the second p is next to another one, so ```repeat``` would increase its value depending on how many consecutive 'p' are after the second 'p'. 
+
+We are going to iterate through each letter in the ```inp```. The first thing that we check is that if that letter is equal to the next letter in the string. If it is equal, we just add 1 to ```repeat``` and if it is not equal, we proceed to the other validations. Focusing in the case that it is not equal, it checks if ```repeat > 1```. If it is not , it simply checks if the next letter is greater than the one we are at. If it is, we append the letter we are at * 2 (```answer+=inp[l]*2```) and if it is not, we just append the letter we are at as it is (```answer+=inp[l]```). If it is not equal and if  ```repeat > 1```, we do the same thing and same validations that we do in the case that the last condition is not true, but we multiply the number times we are appending a letter * ```repeat``` (```inp[l]*repeat*2``` or ```inp[l]*repeat``` ).
+
+### *Coding is different for everyone*
+Everyone who codes has a different way of approaching a solution. If my solution is different than the one that my friend has, it does not mean that either him or me are wrong, it is just that there an infinte ways of coding a solution. And that is one of the best things about coding, being able to get the same output through a different process. We all must understand that everyone has different perspectives and different solutions, and that is fine.
