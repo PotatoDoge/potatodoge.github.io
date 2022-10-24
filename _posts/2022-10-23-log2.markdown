@@ -35,7 +35,14 @@ Printers’ distribution could be represented as the next table:
 |Printer #2   |300 000   |200 000   |500 000   |200 000   |
 |Printer #3   |300 000   |500 000   |300 000   |200 000   |
 
-We must get the next values: C = min(C1,C2,C3), M = min(M1,M2,M3), Y = min(Y1,Y2,Y3) and K = min(K1,K2,K3). Once we get these values, we have to add them in order to see if they add up to 1 000 000. If the value is less than one million, it is impossible to print anything, if the value is equal to one million, we can print without any problem, and if the value is greater than we must subtract any amount of ink so that we get one million units exactly.  
+We must get the next values: C = min(C1,C2,C3), M = min(M1,M2,M3), Y = min(Y1,Y2,Y3) and K = min(K1,K2,K3). Once we get these values, we have to add them in order to see if they add up to 1 000 000. If the value is less than one million, it is impossible to print anything, if the value is equal to one million, we can print without any problem, and if the value is greater than we must subtract any amount of ink so that we get one million units exactly.
+
+You were given three printers and will use each one to print one of the D's. All printers use ink from 4 individual cartridges of different colors (cyan, magenta, yellow, and black) to form any color. For these printers, a color is uniquely defined by 4 non-negative integers c, m, y, and k, which indicate the number of ink units of cyan, magenta, yellow, and black ink (respectively) needed to make the color. 
+
+The total amount of ink needed to print a single D is exactly 1 000 000 units. For example, printing a D in pure yellow would use 1 000 000 units of yellow ink and 0 from all others. Printing a D in the Code Jam red uses 0 units of cyan ink, 500000 units of magenta ink, 450000 units of yellow ink, and 50000 units of black ink 
+
+ 
+A simple solution to this problem is getting the minimum value of each color of the 4 printers. Once we get the minimum values, we add them and if they add up to one million exactly, we can print. If the result is less than 1 000 000, we cannot print anything. And if the result is greater than one million, you must subtract units of ink to get to one million. Now, how do we know from which cartridge of ink you should subtract from? Easy, from the 4 minimum values, you get the maximum value, like this:  Crt = max(c,m,y,k). To that cartridge, you subtract until all 4 values add up to one million, or if that value is equal to zero. If this is the case, that value stays as zero, and you subtract from the next maximum value. That process should go on until you get the sum of one million. 
 
 ## D1000000
 [Back to the top](#problems)
