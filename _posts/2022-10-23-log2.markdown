@@ -4,5 +4,69 @@ title:  "Log 2 - It takes two flints to make a fire."
 date:   2022-10-23 23:34:38 -0700
 categories: jekyll update
 ---
+Learning a new syntax and getting familiarized with a new programing language is always both challenging and exciting. It is something new yet something rather familiar. This last 2 weeks, the apprentice team and I have been putting a lot of effort into solving and coding these problems. We were given 8 problems and 2 weeks to design a solution, and code it. Once it was coded, the code had to pass some tests provided by a Google Competition called 'Google Code Jam'. There were 8 problems, and for each problem we had to code it in 4 different languages: Dart, Kotlin, Python and Typescript. We are 10 in the team, so we had a meetings in which, as a team, came up with solutions and after that, everyone said which problems and in which language were they going to take upon. I took upon of 3 problems: '3D Printing' in Kotlin, 'Double or one thing' in Python and 'Equal Sum' in Dart. Up next I will give a quick overview of the problems and the solutions that we came up with.
 
-Poner info del log 2
+## Problems 
+ - [Punched Cards](#punched-cards) 
+ - [3D Printing](#3d-printing)
+ - [D1000000](#d1000000) 
+ - [Chain Reactions](#chain-reactions)
+ - [Twisty little passages](#twisty-little-passages) 
+ - [Double or one thing](#double-or-one-thing)
+ - [Equal sum](#equal-sum) 
+ - [Weightlifting](#weightlifting)
+
+
+## Punched cards
+[Back to the top](#problems)
+
+
+## 3D printing
+[Back to the top](#problems)
+
+For this problem, you supposedly have 3 printers, each with 4 ink cartridges: cyan(c), magenta(m), yellow(y) and black(k).  You must print a letter ‘D’ of the same color from each printer. You can create any color that you want but you must follow 2 basic rules: To print a color, a printer must have at least the required amount of ink for each of its 4 color cartridges, and that the total amount of ink needed to print a single D is exactly 10^6 units.  
+
+Printers’ distribution could be represented as the next table:  
+
+
+|   |Cyan|Magenta|Yellow|Black|
+|---|:---:|:---:|:---:|:--:|
+|Printer #1   |300 000   |200 000   |300 000   |500 000   |
+|Printer #2   |300 000   |200 000   |500 000   |200 000   |
+|Printer #3   |300 000   |500 000   |300 000   |200 000   |
+
+We must get the next values: C = min(C1,C2,C3), M = min(M1,M2,M3), Y = min(Y1,Y2,Y3) and K = min(K1,K2,K3). Once we get these values, we have to add them in order to see if they add up to 1 000 000. If the value is less than one million, it is impossible to print anything, if the value is equal to one million, we can print without any problem, and if the value is greater than we must subtract any amount of ink so that we get one million units exactly.  
+
+## D1000000
+[Back to the top](#problems)
+
+## Chain Reactions
+[Back to the top](#problems)
+
+## Twisty Little Passages
+[Back to the top](#problems)
+
+
+## Double or one thing
+[Back to the top](#problems)
+
+For this problem you are given a string. With this, you can select any number of characters in the string and choose to duplicate them or not. For example, if you are given the word dog, you might as well get ddoogg from it, or not selecting any character and stay with word dog. From all the combinations that you could get from the word (dog, ddog, ddogg, etc.), you must get the one that appears first in alphabetical order.  
+
+It was really important to identify and analyze any sort of pattern that could be seen between the input, the process and the output. For example, if a letter is consecutively repeated more than once, and if, in alphabetical order, the next letter is different and greater than the one you are at, you would just add to the output the letter, but if it is not greater than, you would add the repeated letters doubled. These patterns were important to analyze and at the end they are the fundaments of the solution.  
+
+You are given a string of uppercase English letters. You can highlight any number of the letters (possibly all or none of them). The highlighted letters do not need to be consecutive. Then, a new string is produced by processing the letters from left to right: non-highlighted letters are appended once to the new string, while highlighted letters are appended twice. 
+
+Given a string, there are multiple strings that can be obtained as a result of this process, depending on the highlighting choices. Among all of those strings, output the one that appears first in alphabetical (also known as lexicographical) order. 
+
+One of the approaches that were found was to go analyzing letter by letter and comparing it to the next one with each iteration. If a letter was the same as the next one, it would only increase 1 in a variable that counted how many times a letter was repeated consecutively. Once a letter was different than the next one, it would compare if it was, alphabetically, greater or less than the next one. If it was greater than, it would only append the single letter multiplied by the number of times it was consecutively repeated (being 1 the default) to the final answer (a string), and if it the next letter was not greater than the one it was at, it would append the letter multiplied by two multiplied by the number of times it was consecutively repeated. At the end, we would have the word that appears first in alphabetical order amongst all possible combinations. 
+
+Here I explain this problem and show the source code: [Double or one thing](https://potatodoge.github.io/jekyll/update/2022/10/22/log1.html)
+
+
+## Equal Sum
+[Back to the top](#problems)
+
+
+## Weightlifting
+[Back to the top](#problems)
+
