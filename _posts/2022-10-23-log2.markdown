@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "Log 2 - It takes two flints to make a fire."
+date:   2022-10-23 23:34:38 -0700
+categories: jekyll update
+---
+
+Poner info del log 2
