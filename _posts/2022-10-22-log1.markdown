@@ -33,7 +33,7 @@ def solution(inp):
     answer += inp[len(inp)-1]*repeat # append last letter to answer
     return answer
 
-if __name__ == ‘__main__‘:
+if __name__ == "__main__":
     cases = int((input()))
     for t in range(0,cases):
         case = str(input())

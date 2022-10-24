@@ -73,6 +73,24 @@ Here I explain this problem and show the source code: [Double or one thing](http
 ## Equal Sum
 [Back to the top](#problems)
 
+We are asked to divide a set of 2N different numbers into 2 subsets, no matter its size, in which the sums of their elements have the same value, in other words, the difference of their sums needs to be equal to zero. The problem has 3 stages. During stage 1, the user inputs the first N different numbers, in stage 2 the machine provides the remaining N numbers in such a way that the sum of all 2N integers is even. In stage 3, the user prints one of the two possible sets with equal sum for the given 2N numbers. All the numbers provided have values between 1 and 10**9 and N is always equal to 100 for the test cases. 
+
+In order to solve this problem, the user needs to generate the first N numbers in such a way that these numbers can fulfill any possible difference. It can be said that after minimizing the difference of the sum of the two subsets, this difference could be, at most, of 10^9. Therefore, we need to provide a set of numbers that combined would take any value between 1 and 10^9 to satisfy this difference. Given that N will be bigger than 100 if we use the decimal system to represent every possible difference, a binary representation of numbers from 1 to 10^9 needs to be implemented. Indeed, this representation can be reached with the 30 first powers of 2, and thus the remaining N-30 numbers we need to provide can be whatever other numbers inside 1 and 10^9.
+
+You are given a set of distinct integers. You need to separate them into two non-empty subsets such that each element belongs to exactly one of them and the sum of all elements of each subset is the same. 
+
+An anonymous tip told us that the problem above was unlikely to be solved in polynomial time (or something like that), so we decided to change it. Now you get to decide what half of the integers are! 
+
+This is an interactive problem with three phases. In phase 1, you choose NN distinct integers. In phase 2, you are given another NN integers that are distinct from each other and from the ones you chose in phase 1. In phase 3, you have to partition those 2N2N integers into two subsets, both of which sum to the same amount. All 2N2N integers are to be between 11 and 109109, inclusive, and it is guaranteed that they sum up to an even number. (Google Code Jam Problem statements).
+
+# ***Binary Representation*** 
+
+It is a numbering system with base 2 in which numbers are represented using only two digits: zero and one (0 and 1). 
+
+# ***Decimal to binary conversion***. 
+
+The number of the decimal system is divided by 2, whose whole result is divided again by 2, and so on until the dividend is less than the divisor, 2. Then the remainders are ordered starting from the last to the first, simply placed in reverse order as they appear in the division. This will be the number converted to binary. 
+
 
 ## Weightlifting
 [Back to the top](#problems)
