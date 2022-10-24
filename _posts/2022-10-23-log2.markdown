@@ -20,6 +20,27 @@ Learning a new syntax and getting familiarized with a new programing language is
 ## Punched cards
 [Back to the top](#problems)
 
+Punched Cards is a problem that deals with array manipulation, where given the integers R = Rows and C = Columns describing the size of a punched card, you need to print the ASCII art drawing of it as described. 
+
+Here is an example with R=3 and C = 4: 
+
+```
+. . + - + - + - + 
+. . | . | . | . | 
++ - + - + - + - + 
+| . | . | . | . | 
++ - + - + - + - + 
+| . | . | . | . | 
++ - + - + - + - + 
+```
+
+# *What is Punched Cards about?* 
+
+A secret team of programmers is plotting to disrupt the programming language landscape and bring punched cards back by introducing a new language called Punched Card Python that lets people code in Python using punched cards! Like good disrupters, they are going to launch a viral campaign to promote their new language before even having the design for a prototype. For the campaign, they want to draw punched cards of different sizes in ASCII art.
+The ASCII art of a punched card they want to draw is similar to an R×C matrix without the top-left cell. That means, it has [(R⋅C) − 1] cells in total. Each cell is drawn in ASCII art as a period (.) surrounded by dashes (-) above and below, pipes (|) to the left and right, and plus signs (+) for each corner. Adjacent cells share the common characters in the border. Periods (.) are used to align the cells in the top row. 
+
+
+
 
 ## 3D printing
 [Back to the top](#problems)
@@ -47,8 +68,56 @@ A simple solution to this problem is getting the minimum value of each color of 
 ## D1000000
 [Back to the top](#problems)
 
+On the d1000000 problem, you need to calculate the longest straight in which you can choose a number from it given a collection of dice with different numbers of sides. For this problem, you will need to assume that the dices won’t have the typical 6 sides, and instead, consider the numbers of sides that will be given as an input. However, the dice will keep the property of being numbered from 1 to k.  
+
+As parameters, you will be given T as number of cases, on the second line will be the list of N dice and on the following line will be list of the respective sides of the dice. On dice games like Yahtzee, a straight is a combination of a sequential consecutive cycle with the numbers from the dice. For example, getting all 1-2-3-4-5-6 on a traditional d6 dice.  
+
 ## Chain Reactions
 [Back to the top](#problems)
+
+Given a forest of trees, accumulate "fun" by picking leaves in order. When a leaf is picked, walk all the way towards root until a previously visited vertex is hit and add the max fun along the path to the total fun accumulated. Maximize total fun. 
+
+To solve this problem a Dynamic Programming approach using a bottom-up method was used, I.e., divide the problem into small sub-problems –one tree at time-, solve each of these ones individually and append the optimal solution to the overall solution. Each tree will be solved in such a way that to maximize overall fun we need to pick the initiator of the tree with the smallest factor F to give a chance to the bigger ones to maximize the current sum. Once the smallest leaf is activated and the fun factor of the current tree is computed, update the fun factor of the root of the current tree with the accumulated fun, and go to the next one, until no more trees remain. Once the computing of each tree is finished, append the accumulated value to the main root of the forest. In order to solve this, we need to have knowledge of tree data structures, dynamic programming, nested lists and adjacency lists. 
+
+# *Problem Description:* 
+
+Chain Reactions is a maximization problem in which we are asked to "activate" N modules in a given order.  Each module has a fun factor F that lies between 1 and 10**9 and each module may point at one other module with a lower index. If not, it points at the abyss "0". The fun gotten from a chain reaction is the largest fun factor of all modules that triggered in that chain reaction. We are going to trigger each initiator module once, in some order. The overall fun from the session is the sum of the fun he gets from each chain reaction. Given the fun factors and the setup of the modules, compute the maximum fun we can get if we trigger the initiators in the best possible order. 
+
+Constraints: 
+- All the modules have to be activated 
+- Once a module is activated, it cannot be triggered again 
+- A module cannot point to another with a bigger index 
+
+# *Dynamic Programming:*
+Dynamic Programming (DP) is an algorithmic technique for solving an optimization problem by breaking it down into simpler subproblems and utilizing the fact that the optimal solution to the overall problem depends upon the optimal solution to its subproblems. DP offers two methods to solve a problem:
+- Top-down with Memoization: uses recursion
+- Bottom-up with Tabulation: avoids recursion 
+
+Our solution does not involve recursion, so let's focus on the second method, bottom-up: 
+
+Tabulation is the opposite of the top-down approach and avoids recursion. In this approach, we solve the problem “bottom-up” (i.e. by solving all the related sub-problems first). This is typically done by filling up an n-dimensional table. Based on the results in the table, the solution to the top/original problem is then computed. 
+
+Tabulation is the opposite of Memoization, as in Memoization we solve the problem and maintain a map of already solved sub-problems. In other words, in memoization, we do it top-down in the sense that we solve the top problem first (which typically recurses down to solve the sub-problems). 
+
+# *Forest and tree structures:* 
+
+In graph theory, a tree is an undirected graph in which any two vertices are connected by exactly one path, or equivalently a connected acyclic undirected graph. A forest is an undirected graph in which any two vertices are connected by at most one path, or equivalently an acyclic undirected graph, or equivalently a disjoint union of trees. 
+
+# *Nested lists:* 
+
+A nested list is a list of lists, or any list that has another list as an element (a sublist). They can be helpful if you want to create a matrix or need to store a sublist along with other data types. 
+
+# *Adjacency list:* 
+The adjacency list for a vertex v is a linked list of all the vertices w adjacent to v. A graph –or a tree in this case- can be represented by |v| adjacency lists, one for each vertex. 
+
+In this example we will see how the array will be filled, in which, it is seen from where the arrow goes out, to where it arrives.
+
+In programming, the adjacency list is represented using nested lists, for this example we would have a nested list like this: 
+
+Index 0 is vertex A, index 1 is vertex B and so on: 
+
+adj_list = [ [B, C, D], [A, E, F], [A, D, G], [A, C, G, H], [B, I], [B], [C, D], [D], [E] ] 
+
 
 ## Twisty Little Passages
 [Back to the top](#problems)
@@ -65,9 +134,8 @@ The first approach was to just teleport and visit 8000 random chosen vertices, u
 One way to fix this is to teleport once, then walk once, so in case of a star your chances of hitting the center is 100%, and not just a tiny fraction. Like this: 
 Repeat 4000 times: 
 
-Randomly teleport to an unexplored vertex  
-
-Walk 1 time to a random neighbor 
+- Randomly teleport to an unexplored vertex  
+- Walk 1 time to a random neighbor 
 
 In order to be able to teleport to an unexplored vertex, to maximize chances of seeing something new we need to use a set, which will let us store unseen places and to ignore the ones we already visited thanks to its property of hashing. This will also result in an optimized solution since the look up and insertion time complexity of the set is of O(1). 
 
@@ -75,9 +143,8 @@ You are investigating a cave, which is a simple undirected graph with N vertices
 
 When in a room, you can identify what room you are in and see how many passages it connects to, but you cannot distinguish the passages. You want to estimate the number of passages that exist in the cave. You are allowed to do up to K = 8000 operations. An operation is either: 
 
-Teleport: You choose to teleport to a vertex number of your choice 
-
-Walk: You choose to be moved to a uniformly chosen random neighbor of the current vertex. 
+- Teleport: You choose to teleport to a vertex number of your choice 
+- Walk: You choose to be moved to a uniformly chosen random neighbor of the current vertex. 
 
 After each move, you are told the vertex number and the number of incident edges. With this information you have to estimate the number of edges in the graph in an approximation error of 33.3%, and you are to succeed in at least 90% of the test cases. 
 
@@ -111,15 +178,24 @@ An anonymous tip told us that the problem above was unlikely to be solved in pol
 
 This is an interactive problem with three phases. In phase 1, you choose NN distinct integers. In phase 2, you are given another NN integers that are distinct from each other and from the ones you chose in phase 1. In phase 3, you have to partition those 2N2N integers into two subsets, both of which sum to the same amount. All 2N2N integers are to be between 11 and 109109, inclusive, and it is guaranteed that they sum up to an even number. (Google Code Jam Problem statements).
 
-# ***Binary Representation*** 
+# *Binary Representation* 
 
 It is a numbering system with base 2 in which numbers are represented using only two digits: zero and one (0 and 1). 
 
-# ***Decimal to binary conversion***. 
+# *Decimal to binary conversion*. 
 
 The number of the decimal system is divided by 2, whose whole result is divided again by 2, and so on until the dividend is less than the divisor, 2. Then the remainders are ordered starting from the last to the first, simply placed in reverse order as they appear in the division. This will be the number converted to binary. 
 
 
 ## Weightlifting
 [Back to the top](#problems)
+
+On the weightlifting problem, you are given a series of exercises (e) that must be done in order, each one requires a specific weight. There are (w) types of weights and the main goal is to calculate the minimum number of operations to put on and off the different weights to do all exercises. 
+
+For example, if you have 3 exercises (e) with 1 weight type (w), and each of the exercises needs 1, 2 and 1 as weights, the result will be 4 operations:
+- One operation to put on a 1w
+- One operation to put another 1w to complete an exercise of 2w 
+- One operation to put off 1w and complete an exercise of 1w 
+- One operation to take off 1w and empty the stack   
+
 
