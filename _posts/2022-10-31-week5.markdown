@@ -1,0 +1,6 @@
+---
+layout: post
+title:  "Week 5 -- High achievement always takes place in the framework of high expectation."
+date:   2022-10-31 12:14:38 -0700
+categories: jekyll update
+---
