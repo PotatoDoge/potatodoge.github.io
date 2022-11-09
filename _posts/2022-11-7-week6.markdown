@@ -1,8 +1,12 @@
 ---
 layout: post
-title:  "Week 6 --"
+title:  "Week 6 -- People who say it cannot be done should not interrupt those who are doing it."
 date:   2022-11-7 12:14:38 -0700
 categories: jekyll update
 ---
 
-Week6
+I have been working on the project that was mentioned in last week's post, and it surely has been challenging. We were given a month to complete the frontend, the backend and any test regarding both ends. The frontend is the part that has been giving me a lot of trouble, mostly because I was not familiarized with React. So basically I have been learning by doing this project, which in my opinion is the best way of learning a new tool.
+
+The backend has not been really difficult to be honest, I've had a few setbacks regarding a couple of endpoints, but most of the API is done and validated. This is the part that I like the most about a project, designing and coding the backend of it.
+
+I have around 20 days left to complete this project and I am positive that I will finish it on time. I am still learning some tools, which I think that will be useful not just for this project, but for any projects that the future could bring. I will keep you updated of my progress and how is the project going. 
