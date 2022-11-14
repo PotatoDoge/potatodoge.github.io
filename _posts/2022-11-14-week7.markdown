@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "Week 7 -- Hard work pays off."
+date:   2022-11-14 12:14:38 -0700
+categories: jekyll update
+---
+
+3 weeks ago I started to work on a 'To-do' app. I had to create the frontend using React framework, and for the backend I had to use Springboot and Java. I had previous knowledge regarding Springboot, Java and simple APIs, but as of React, I had little to none knowledge of it. I expected to be a challenge for me, a way of learning new tools and technologies, and I was right with both assumptions.
+
+### What did i learn this week?
+- Sending requests from the frontend to the backend, with params in the url.
+- Handling requests with params in the backend.
+- Validating different types of requests.
+
+As of last of week, the app could already perform CRUD tasks. It was able to create a new item, to delete it and render the new list on the frontend, it was able to update an item, and it was also able to get the items from the backend. The new challenge was to learn how to send requests with multiple params in it. I wanted to be able to filter the items from the backend and show the correct response on the frontend. At first, I was not sure which approach to use in order to do this, but as days went by, the solution started to appear. 
+
+First, I implemented that the GET endpoint could receive parameters, which were not required, they were optional. Then, the backend would check each parameter in order to compare if it was empty or valid. After that, it would simply filter the items that had equal values as the given parameters. Once the endpoint was complete and validated, I started working on the frontend.
+
+For the frontend, there was no logic behind sending a request with parameters, the challenge was in creating an input that would send the proper parameters in the request. At first, I had a little trouble implementing it, but at the end, it was really simple, the app just had to add the variables into the url and send the request to the backend.
+
+**What's missing?** 
+
+I have to implement a way of sorting the items, and also add pagination to the app, in case that the user has to handle a lot of to-do items.
