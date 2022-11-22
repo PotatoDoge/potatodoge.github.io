@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Week 8 -- Almost there."
+date:   2022-11-21 12:14:38 -0700
+categories: jekyll update
+---
+This week has been one in which I have learned many interesting things. As I previously posted, I was going to work in the sorting and pagination part of the app, both for the frontend and the backend. I was not sure which approach I was going to take in order to complete this tasks so I got down to work.
+
+### What did I learn this week?
+- Pagination
+- How to sort a given list
+
+I started working on the sorting feature. First, I had to come up with how was I going to send from the frontend to the backend the order in which the user would like the items to be sorted. I came up with simple keywords such as 'd2u' to first show the done to-dos and then the undone, or 'mr2o' to sort by due date. Once the backend received the keyword, it checked if it was sorting by due date (closest to furthest, or vice versa) or by status (done to undone, or vice versa). The backend handled the sorting and returned to the frontend the list in the desired order. This feature was not as challenging as I expected, but I still learned a lot from implementing this.
+
+The other feature in which I worked this week was the pagination. For this part, the frontend would handle changing between pages and the backend would handle to split the to-dos' list into sublists of maximum 10 to-dos per sublist. Before splitting the original list to n sublists, the backend sorted and filtered based on user's input and frontend's request. The backend should return the requested page (or sublist) to the frontend.
+
+**What's missing?** 
+
+The app is almost complete. There is missing only one feature, which is displaying the average of the time between creation date and done date for all “to do’s”.
