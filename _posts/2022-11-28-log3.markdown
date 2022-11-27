@@ -1,0 +1,302 @@
+---
+layout: post
+title:  "Log 3 - Todo App"
+date:   2022-11-25 12:14:38 -0700
+categories: jekyll update
+---
+
+## About the project
+
+A month ago we were given a new project. It was to create a Todo App, both the frontend and the backend. As the name implies, it consists of an app in which the user can create a 'to-do' with a specific text, a due date, assign a priority (High, Medium, Low), its status (Done or Undone), and an automatically generated ID. 
+
+We were given Functional Requirements, UI Requirements, Engineering Requirements and a few more specifications regarding the backend and the frontend. So let me describe what all this **requirements** were about.
+
+***Functional requirements***
+- Create a “to do” specifying the name, a priority, and possibly a due date
+- Ability to edit name, priority and due date for existing “to do” tasks
+- Be able to filter “to do’s” specifying the name (or part of the name), and the priority, and if they are done/undone.
+- Be able to sort the “to do’s” by priority and/or due date.  
+- Mark “to do’s” as done (clicking in a checkbox) or to undone a “to do”
+- Since it is possible that the client will have a lot of “to do’s” they need to paginate the list of “to do’s”
+- Ability to know, in average, the time between creation and done for all “to do’s”. This should be shown in general for all done “to do’s” and also grouped by priority.
+
+***UI requirements***
+- Search/Filtering Controls
+- New To Do Button. This should open a modal to type the “to do” data
+- Priority column should show in the header the classic up and down arrows to allow the user to sort
+- Due date column should show in the header the classic up and own arrows to allow the user to sort
+- Action column to show actions (links/buttons) to allow the user to delete or edit a “to do”
+- Pagination control. Showing the pages, its number and the next and previous page is enough.
+- Area to show the metrics
+
+***Engineering requirements***
+
+For the backend, we will use a Model that represents our 'to-do' item as a class, a Controller class which defines our endpoints and a Service class which contains our business logic. The controller connects to the service, and the service to the model, in this case. If a database were to be implemented, the service would connect to a repository which connects to a database.
+
+#### *Model*
+The model (abstract representation of a to-do) has to have these specifications:
+- Id. This could be a number or string or a combination. Must be unique
+- Text (required). Max length is 120 chars
+- A due date (optional)
+- Done/undone flag
+- A done date. When the “to do” is marked as done this date is set
+- Priority (required). Options: High, Medium and Low
+- Creation date
+
+#### *API*
+The API (controller class) has to have these specifications:
+- A GET endpoint (/todos) to list “to do’s”
+    - Include pagination. Pages should be of 10 elements.
+    - Sort by priority and/or due date
+    - Filter by done/undone
+    - Filter by the name or part of the name
+    - Filter by priority
+- A POST endpoint (/todos) to create “to do’s” 
+- A PUT endpoint (/todos/{id}) to update the “to do” name, due date and/or priority
+- A PUT/POST endpoint (/todos/{id}/done) to mark “to do” as done
+    - If “to do” is already done nothing should happen (no error returned)
+- A PUT/POST endpoint (/todos/{id}/undone) to mark “to do” as undone
+    - If “to do” is done, this should clear the done date
+
+#### ***Extra specifications***
+- The API should handle these http return codes:
+    - Successful/Normal responses should return 200 (OK)
+    - Responses where a resource is not found (saying if you’re trying to get a specific resource or deleting one that no longer exists) should return 404 (Not Found)
+    - When a ToDo is created, it should return 201 (Created)
+    - Validation errors when creating a ToDo should return 400 (Bad Request) and their respective error message indicating what happened (stylistic Json format).
+
+All these specifications are met throughout the app and its components, both in the backend and the frontend. Now, let's see what was done where, and how was it done.
+
+## Backend
+There were a few specifications for the backend:
+- Use Java
+- Use SpringBoot
+- Use Maven
+- Be able to run the app with ./mvnw spring-boot:run in MacOS/Linux systems
+- Be able to run the tests with ./mvnw test
+- The app must run in port 9090  
+
+Now, the following screenshot is about the project's structure. This project was created with the help of the springboot initializer in the website [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot). We will analyze a few files from this screenshot.
+
+<p align="center">
+  <img src="/assets/structure.png">
+</p>
+
+Now, for the rest of the backend's explanation, we will be focusing on two main folders, ```src/main/java/com.me.todo.app``` and ```src/test/java/com.me.todo.app/todo```.
+
+### ***src/main/java/com.me.todo.app***
+This folder contains what is going to be handled and used when the app is executed. 
+
+#### ***TodoApplication.java***
+The file ```TodoApplication``` is the one that runs and it has the following code in it:
+```java
+package com.me.todo.app;
+import com.me.todo.app.todo.Todo;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+
+
+@SpringBootApplication
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+public class ToDoApplication implements CommandLineRunner {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ToDoApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		Todo.generateRandomDummies(5);
+	}
+}
+```
+Let's briefly analyze this code. First, we can see the ```@SpringBoot``` and ```@EnableAutoConfiguration``` annotations. An annotation gives the compiler information about the piece of code below it. In this case, the ```@SpringBoot``` annotation means that is running a SpringBoot application. The ```@EnableAutoConfiguration``` does nothing in this case, but it will be useful in case that it is opted for a database implementation.
+
+When we run ```./mvnw spring-boot:run```, this is the application that will run. You usually do not need to modify this class at all, but in this case I added the ```run``` method. In this method, I added ```Todo.generateRandomDummies(n)```. This method starts the application with ```n``` random dummies. This is optional, this method could be deleted, and it would not affect the performance of the application at all, it would only mean that the application would not start with initial to-do's.
+
+Now, the rest of the files take care of the defining the endpoints, the business logic and the to-do abstract model. Let's take a quick look on each of these files.
+
+#### ***Todo.java***
+As shown in the picture below, this class defines the Model (an abstract representation) of a to-do. It contains the information that was required in the Engineering Requirements. Also, it contains certain methods that handle the in-memory storage modifications, such as creating a new to-do, deleting one with a certain id, updating one with a certain id and so on.
+
+<p align="center">
+  <img src="/assets/todo.png">
+</p>
+
+
+The app should not be connected to a database, so in this case, the ```private static List<Todo> todos = new ArrayList<>()``` works as an in-memory database. Now, it has different attributes. First, the ```id``` will be automatically set to a new to-do when it is added, and the variable ```idIncrement``` will be incremented by one. This logic simulates the auto-increment of a value in a database. The ```text``` attribute is simply a string. For the ```dueDate```, ```doneDate``` and ```creationDate``` attributes it was opted to use String data type instead of 'Date' data type for easy manipulation. The ```page``` attribute is an Integer, and it is set when pagination is required. Now, for both ```status``` and ```priority``` attributes an enum was defined for each. An enum is useful when we know that an attribute can only be a defined set of values. In the case of the ```status``` attribute, it can only be either 'DONE' or 'UNDONE'. And for ```priority```, it can only be 'HIGH','MEDIUM' or'LOW.' 
+
+#### ***TodoService.java***
+This class contains the business logic of the backend app. It is the class that works with the data received by the endpoints, transforms it, manipulates it and sends it to the database, or in this case to the in-memory storage. For example, let's check this next piece of code:
+```java
+public ResponseEntity<Todo> addTodo(Todo t){
+        switch (validateRequiredFields(t)){
+            case "text":
+            case "priority":
+            case "status":
+                return new ResponseEntity<>(Todo.getLastTodo(), HttpStatus.BAD_REQUEST);
+            default:
+                Todo.addTodo(t);
+                return new ResponseEntity<>(Todo.getLastTodo(), HttpStatus.CREATED);
+        }
+    }
+
+private String validateRequiredFields(Todo t){
+        if(t.getText() == null || t.getText().length() > 120 || t.getText().length() == 0){
+            return "text";
+        }
+        else if(t.getStatus() == null){
+            return "status";
+        }
+        else if(t.getPriority() == null){
+            return "priority";
+        }
+        return "pass";
+    }
+```
+The ```addTodo``` method  is used to add a new to-do to the in-memory storage. It receives a To-do object that is the one to be added. First, it validates that the to-do attributes are correct. This validation is done in the ```valdiateRequiredFields``` method. The object is passed, and it returns a value that helps the first method to either accept the new to-do, or reject it. If the input is correct, the to-do is added to the in-memory storage, and returns a ```ResponsEntity``` with ```CREATED``` as the HttpStatus response. Here are the [HttpStatus](#extra-specifications) responses that are used in this project.
+
+Another example would be the method that handles deleting a to-do from the in-memory storage. Here is the code for that section:
+```java
+public ResponseEntity<String> deleteTodo(Long id){
+        if(Todo.deleteTodo(id)){
+            return new ResponseEntity<>("Todo deleted successfully", HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Todo not found", HttpStatus.NOT_FOUND);
+        }
+    }
+```
+
+The ```deleteTodo``` method is quite simple. It receives the id of the to-do to be deleted, the id is passed to ```Todo.deleteTodo``` which is a method inside the ```Todo.java``` class, and it just looks up if there is any to-do with the given id. If it finds one, it deletes it and returns true, which allows the service layer to return a ```HttpStatus.OK``` response, or if there is not a to-do with the given id, it returns false and the service returns a ```HttpStatus.NOT_FOUND```. These are just a few examples of what the service layer does. It also handles adding new to-dos, updating to-dos, more validations and anything that is received through the endpoints of the API.
+
+As it can be seen from the previous examples, the service layer of the app handles the business logic behind the app. Usually this layer connects with the repository interface, which connects to the database server, but in this case it does not connect to anything else, although it uses some methods inside the ```Todo.java``` class.
+
+This layer had its challenges, for example handling pagination, sorting and filters. The idea is to always find the solution that uses the least amount of computing resources in the fastest way possible.
+
+#### ***TodoController.java***
+This is the controller layer of the API. It is the part of the API that receives requests and data, and sends it to the service layer. After this layer manipulates the data, it returns a response to the controller, and it returns the response to whoever, or whatever, sent the request. Let's take this next piece of code as an example of what this layer does:
+```java
+@GetMapping()
+    public ResponseEntity<List<Todo>> getTodos(@RequestParam(required = false, defaultValue = "None") String priority,
+                                               @RequestParam(required = false, defaultValue = "None") String status,
+                                               @RequestParam(required = false, defaultValue = "") String inText,
+                                               @RequestParam(required = false, defaultValue = "") String sortBy,
+                                               @RequestParam (required = false, defaultValue = "1") String page){
+        return todoService.getTodos(priority,status,inText,sortBy, page);
+    }
+```
+
+First we can see the ```@GetMapping()``` annotation. This indicates the method that is being used for the GET HttpMethod. Then, we can see that it receives different parameters. The ```@RequestParam()``` annotation handles the parameters that are being passed in the url. It returns the response that is being returned from the ```getTodos()``` method in the service layer. 
+
+Another example in this layer could be this:
+```java
+@PostMapping()
+    public ResponseEntity<Todo> addTodo(@RequestBody Todo newTodo){
+        return todoService.addTodo(newTodo);
+    }
+```
+This method handles receiving a new to-do that the service layer will add to the in-memory storage. The ```@RequestBody``` annotation simply indicates the method that the request comes with a body, in this case the body being a Todo object. It returns a response returned from the service layer from the method that handles adding a new to-do into the storage.
+
+Another example with another annotation that we can analyze is this one:
+
+```java
+@PutMapping(path = "{id}")
+    public ResponseEntity<String> updateTodo(@PathVariable("id") Long id, @RequestBody Todo newTodo){
+        return todoService.updateTodo(id,newTodo);
+    }
+```
+
+The path passed in the ```@PutMapping``` annotation is a value that is defined through the url, not as a parameter but as a route. This method handles receiving a body that will update a to-do with the id given through the path. For example, if we were to update the to-do with ```id=2```, the path would be this: **localhost:9090/todos/2**, and the request would have a body.
+
+This layer defines the endpoints, and the information (requests) that is sent to the backend, either by url parameters, as a path or as a body in the request. After handling the data and manipulating it in the next layers, it returns a response to whatever, or whoever, sent the request. Also, this layer defines what can be done with the API.
+
+### ***src/test/java/com.me.todo.app/todo***
+This folder contains the testing part of the app. Testing is a really important part of developing an app, because it is where you test the logic behind the API, and where you can see if the it properly works or not. As it is seen in the picture above, this folder only has 2 files: ```TodoServiceTest.java``` and ```ToDoApplicationTests```.
+
+#### ***ToDoApplicationTests.java***
+This file does not contain anything really. It is just a file created by defualt by the springboot initializer. 
+
+<p align="center">
+  <img src="/assets/defaultTest.png">
+</p>
+
+#### ***TodoServiceTest.java***
+This is the file in which the service layer will be tested. This layer is the one to be tested because it is the one in which the business logic is coded, so it is important to check if the logic works by prodiving the methods with specific inputs and comparing the actual return values with the expected ones. The class must have a ```@SpringBootTest``` annotation in order to run the tests with the ```./mvnw test``` command. The ```@Test``` annotation before each test is really important in order for the compiler to handle the piece of code as test. Also, a method is defined with the ```@AfterEach``` annotation. This method will automatically run after each test doing whatever is defined inside of it. It is important to clear, or reset, initial values in order to properly test each test individually. This can be seen in the picture below:
+
+<p align="center">
+  <img src="/assets/afterEach.png">
+</p>
+
+In ```Todo.java```:
+
+```java
+    /**
+     * Method that sets initial values to default
+     */
+    public static void resetValues(){
+        idIncrement = 1L;
+        todos.clear();
+    }
+```
+Let's analyze a few tests:
+- Testing if the API returns the correct response if there is no to-do in the in-memory storage:
+```java
+@Test
+    void getTodosEmptyList() {
+        // passing default values
+        ResponseEntity<List<Todo>> response = todoService.getTodos("None","None","","","1");
+        ResponseEntity<List<Todo>> expected = ResponseEntity.ok(new ArrayList<>());
+        assertEquals(expected,response);
+    }
+``` 
+In this test, ```getTodosEmptyList()```, there are 3 lines of code. The first one, ```response``` , is the response that is returned from calling the ``` getTodos```  method in the service layer. Default values are passed to it. In the next line of code, an expected response is simulated. It means that if the first line works properly, it should return a response with HttpStatus OK and an empty list. In the third line of code, it simpy compares both values with ```assertEquals``` . If both are equal, the test is passed, if they are different, the test fails.
+
+- Testing if the API adds correctly a new to-do to the in-memory storage
+```java
+@Test
+    void addTodoCorrectly() {
+        Todo t = new Todo(null,"Test","", StatusFlag.UNDONE, null, Priority.LOW,"",null);
+        ResponseEntity<Todo> response = todoService.addTodo(t);
+        ResponseEntity<Todo> expected = new ResponseEntity<>(t, HttpStatus.CREATED);
+        assertEquals(expected,response);
+    }
+```
+In this test, first we create a new to-do by hand. Then we call the ```addTodo()``` method in the service layer, and passing it the to-do previously created. This should return a response. At the end we compare both responses, the real one and the expected one, and check if both are equal in order to pass the test. 
+
+- Testing if the API gets correctly the average of how long does it take to complete tasks with low priority
+```java
+@Test
+    void getAvgLow() throws ParseException {
+        Todo t1 = new Todo(null, "Test 1", "2022-01-30", StatusFlag.UNDONE, null, Priority.LOW, "", null);
+        Todo t2 = new Todo(null, "Test 2", "", StatusFlag.UNDONE, null, Priority.LOW, "", null);
+        Todo t3 = new Todo(null, "Test 3", "2022-02-13", StatusFlag.DONE, "2022-11-25", Priority.HIGH, "", null);
+        Todo t4 = new Todo(null, "Test 4", "", StatusFlag.DONE, "2022-11-25",Priority.HIGH,"",null);
+        Todo [] ts = {t1,t2,t3,t4};
+        for(Todo t: ts){
+            todoService.addTodo(t);
+        }
+
+        ResponseEntity<Double> response = todoService.getAvg("Low");
+        ResponseEntity<Double> expected = ResponseEntity.ok(0.0);
+        assertEquals(expected,response);
+    }
+```
+For this test, we must add a few random to-dos in order to have values to calculate the average from. We compare the response agains the expected response, and if both are equal, the test will pass.
+
+Testing is really important in order to pass an API to production. It should pass with little to none mistakes or bugs.
+
+### ***What could be done in order to improve the API's performance?***
+- More tests could be created. The more it is tested, the better.
+- Change some logic in order to improve performance
+- If a database is to be implemented, probably some logic would be changed
+
+
+## Frontend
+There were a few specifications for the front-end:
+- 
+
