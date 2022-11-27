@@ -298,5 +298,40 @@ Testing is really important in order to pass an API to production. It should pas
 
 ## Frontend
 There were a few specifications for the front-end:
-- 
+- Use JavaScript
+- Use ReactJS
+- Up to you to use Redux or React Context
+- Front end project must run in port 8080
+- npm run start – To run the front-end application
+- npm run tests – To run all tests in the front-end application 
 
+Now, the following screenshot is about the front-end project’s structure. This project was created with the command ```npx create-react to-do-frontend```.
+
+<p align="center">
+  <img src="/assets/fe-structure.png">
+</p>
+
+The node_modules folder, and files, was created with the ```npm i``` command. Once you install it, you do not need to manipulate that file in any way possible.
+
+Public folder only contains basic information about the project, nothing related to its performance nor manipulation.
+
+<p align="center">
+  <img src="/assets/public.png">
+</p>
+
+The ```package-lock.json```, ```package.json``` and ```.gitignore``` files contain metadata, project's dependencies and more information regarding the project. 
+
+The ```src``` folder is the one in which we will be working on. The ```components``` folder contains the components that together form the UI. The ```styles``` folder contains the scss and css files that give the UI some styling. The ```utils``` folder contains a file that helps a few components. The ```index.js``` renders the root component. And the ```App.js``` is the root component. It has the following structure:
+
+<p align="center">
+  <img src="/assets/src.png">
+</p>
+
+We will be analyzing a few components on the front-end both code and how do they look when rendered:
+
+- modal
+- to do item
+- boton componente
+- toast
+- filtros
+- avg
