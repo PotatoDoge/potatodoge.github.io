@@ -672,3 +672,10 @@ export default Metrics;
 - To handle what happens if the backend server is not running.
 - Optimize components.
 
+## What did I learn while developing this app?
+It was a project full of new technologies for me. I had previously coded in Java, but regarding the Spring framework I had little experience. I understood the basic concepts of it, and had done a few projects on my own, but I still learnead a lot by doing this specific project, specially about testing and annotations.
+
+I also learned a lot regarding frontend development. I had previous experience with HTML, CSS and a little bit of Javascript. But I did not have any experience with React. I believe that with this project I got a hang on the basics of React, but I think that I would need more practice in order to fully code something using it on my own.
+
+It surely was a challenge, but I strongly believe, and agree, with the concept of learning by doing. There were moments in which I coded something quickly, but there were also moments in which it took me days to code a simple thing. The part I enjoyed the most was developing the backend. I'd rather work on the backend of an app by far, rather than the frontend.
+
