@@ -76,7 +76,7 @@ There were a few specifications for the backend:
 - Be able to run the tests with ./mvnw test
 - The app must run in port 9090  
 
-Now, the following screenshot is about the project's structure. This project was created with the help of the springboot initializer in the website [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot). We will analyze a few files from this screenshot.
+Now, the following screenshot is the project's structure. This project was created with the help of the springboot initializer in the website [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot). We will analyze a few files from this screenshot.
 
 <p align="center">
   <img src="/assets/structure.png">
@@ -181,7 +181,7 @@ This layer had its challenges, for example handling pagination, sorting and filt
 #### ***TodoController.java***
 This is the controller layer of the API. It is the part of the API that receives requests and data, and sends it to the service layer. After this layer manipulates the data, it returns a response to the controller, and it returns the response to whoever, or whatever, sent the request. Let's take this next piece of code as an example of what this layer does:
 ```java
-@GetMapping()
+    @GetMapping()
     public ResponseEntity<List<Todo>> getTodos(@RequestParam(required = false, defaultValue = "None") String priority,
                                                @RequestParam(required = false, defaultValue = "None") String status,
                                                @RequestParam(required = false, defaultValue = "") String inText,
@@ -195,7 +195,7 @@ First we can see the ```@GetMapping()``` annotation. This indicates the method t
 
 Another example in this layer could be this:
 ```java
-@PostMapping()
+    @PostMapping()
     public ResponseEntity<Todo> addTodo(@RequestBody Todo newTodo){
         return todoService.addTodo(newTodo);
     }
@@ -205,7 +205,7 @@ This method handles receiving a new to-do that the service layer will add to the
 Another example with another annotation that we can analyze is this one:
 
 ```java
-@PutMapping(path = "{id}")
+    @PutMapping(path = "{id}")
     public ResponseEntity<String> updateTodo(@PathVariable("id") Long id, @RequestBody Todo newTodo){
         return todoService.updateTodo(id,newTodo);
     }
@@ -246,7 +246,7 @@ In ```Todo.java```:
 Let's analyze a few tests:
 - Testing if the API returns the correct response if there is no to-do in the in-memory storage:
 ```java
-@Test
+    @Test
     void getTodosEmptyList() {
         // passing default values
         ResponseEntity<List<Todo>> response = todoService.getTodos("None","None","","","1");
@@ -270,7 +270,7 @@ In this test, first we create a new to-do by hand. Then we call the ```addTodo()
 
 - Testing if the API gets correctly the average of how long does it take to complete tasks with low priority
 ```java
-@Test
+    @Test
     void getAvgLow() throws ParseException {
         Todo t1 = new Todo(null, "Test 1", "2022-01-30", StatusFlag.UNDONE, null, Priority.LOW, "", null);
         Todo t2 = new Todo(null, "Test 2", "", StatusFlag.UNDONE, null, Priority.LOW, "", null);
@@ -306,7 +306,7 @@ There were a few specifications for the front-end:
 - npm run test – To run all tests in the front-end application 
 - Axios library is used for Http requests
 
-Now, the following screenshot is about the front-end project’s structure. This project was created with the command ```npx create-react to-do-frontend```.
+Now, the following screenshot is the front-end project’s structure. This project was created with the command ```npx create-react to-do-frontend```.
 
 <p align="center">
   <img src="/assets/fe-structure.png">
