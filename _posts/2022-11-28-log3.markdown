@@ -303,7 +303,8 @@ There were a few specifications for the front-end:
 - Up to you to use Redux or React Context
 - Front end project must run in port 8080
 - npm run start – To run the front-end application
-- npm run tests – To run all tests in the front-end application 
+- npm run test – To run all tests in the front-end application 
+- Axios library is used for Http requests
 
 Now, the following screenshot is about the front-end project’s structure. This project was created with the command ```npx create-react to-do-frontend```.
 
@@ -328,10 +329,344 @@ The ```src``` folder is the one in which we will be working on. The ```component
 </p>
 
 We will be analyzing a few components on the front-end both code and how do they look when rendered:
+#### ***AppContent.js***
+Everything that is displayed in the picture below is what is inside the AppContent file. Some of the items inside are other componentes, but still chidlren of AppContent.js.
 
-- modal
-- to do item
-- boton componente
-- toast
-- filtros
+<p align="center">
+  <img src="/assets/ui.png">
+</p>
+
+The AppContent also handles some values that are important for some functionalities inside its children, such as storing the todos and updating the list after a change has been made, filters, sorting values and what page should be rendered. This values might not be used in the same class, but they are passed to children components.
+
+```
+const [loading, setLoading] = useState(true);
+const [todos, setTodos] = useState(null);
+const [fp, setFp] = useState(''); // filter priority
+const [fs, setFs] = useState(''); // filter status
+const [ft, setFt] = useState(''); // filter text
+const [sort, setSort] = useState('');
+const [page, setPage] = useState(1);
+```
+
+#### ***AppHeader.js***
+This component holds the title, and the four buttons on top. The first button is for adding a new to-do. When clicked, a modal is opened. The next picture shows this said modal.
+
+<p align="center">
+  <img src="/assets/addTodo.png">
+</p>
+
+In this modal, the user inputs the to-do's name, its priority, and a due date. When 'Add Todo' is clicked, a request to the backend is sent, and if the response is OK, it means that it can be added both to the in-memory storage and to the todos list in the front end. If the response is not OK, the error is displayed as a toast message.
+
+<p align="center">
+  <img src="/assets/addError.png">
+</p>
+
+The second button is there just to show all to-dos that are stored in the backend without filters nor sorting. It is like reseting the todo list in the front end, and clear it of filters and sorting.
+
+The third button is to select a sorting value. It openas a modal with the four sorting options. The fourth and last button opens a modal in which the user can select filters in order to send them to the backend and only see the  to-dos that are of their interest. This modal is seen in the picture below. All requests are handled using axios library.
+
+<p align="center">
+  <img src="/assets/filter.png">
+</p>
+
+The code below is the one that sends the **GET** request to the backend in order to retrieve the to-do items.
+
+Values:
+- f1 = priority
+- f2 = status
+- f3 = To-do that contains a specific string
+- s = sorting by
+- p = page to be retrieved
+
+```js
+const getData = (f1, f2, f3, s, p) =>
+    axios.get(
+      `http://localhost:9090/todos?priority=${f1}&status=${f2}&inText=${f3}&sortBy=${s}&page=${p}`
+    );
+```
+#### ***TodoItem.js***
+In order to display all to-dos in the frontend, the todo list is mapped in order to show each to-do in the list with the correct values. The 'to-do item' structure is defined in the class ```TodoItem.js```. This file is the following:
+
+```js
+import React, { useEffect, useState } from 'react';
+import { MdDelete, MdEdit } from 'react-icons/md';
+import styles from '../styles/modules/todoItem.module.scss';
+import { getClasses } from '../utils/getClasses';
+import EditTodoModal from './EditTodoModal';
+import CheckButton from './CheckButton';
+
+function TodoItem({ todo, onDeleteItem, onHandleCheck }) {
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
+
+  const deleteTodo = () => {
+    onDeleteItem(todo.id);
+  };
+  const openModal = () => {
+    setUpdateModalOpen(true);
+  };
+
+  useEffect(() => {
+    if (todo.status === 'DONE') {
+      setChecked(true);
+    } else {
+      setChecked(false);
+    }
+  }, [todo.status]);
+
+  return (
+    <>
+      <div className={styles.item}>
+        <div className={styles.todoDetails}>
+          <CheckButton
+            todo={todo}
+            checked={checked}
+            setChecked={setChecked}
+            handleCheck={onHandleCheck}
+          />
+          <div className={styles.texts}>
+            <p
+              className={getClasses([
+                styles.todoText,
+                todo.status === 'DONE' && styles['todoText--completed'],
+              ])}
+            >
+              {todo.text}
+            </p>
+          </div>
+          <div className={styles.texts}>
+            <p>ID: {todo.id}</p>
+            <p>Priority: {todo.priority}</p>
+            <p>Creation Date: {todo.creationDate}</p>
+            <p>Due date: {todo.dueDate}</p>
+            <p>Done date: {todo.doneDate}</p>
+          </div>
+        </div>
+        <div className={styles.todoActions}>
+          <div
+            className={styles.icon}
+            onClick={openModal}
+            onKeyDown={openModal}
+            role="button"
+            tabIndex={0}
+          >
+            <MdEdit />
+          </div>
+          <div
+            className={styles.icon}
+            onClick={deleteTodo}
+            onKeyDown={deleteTodo}
+            role="button"
+            tabIndex={0}
+          >
+            <MdDelete />
+          </div>
+        </div>
+      </div>
+      <EditTodoModal
+        type="edit"
+        modalOpen={updateModalOpen}
+        setUpdateModalOpen={setUpdateModalOpen}
+        todo={todo}
+      />
+    </>
+  );
+}
+
+export default TodoItem;
+```
+You can interact with this item in 3 possible ways. The first one is to set the to-do as done or undone. This happens by clicking the CheckBox on the left. It updates the value ```checked```. If checked is true, the checkbox is marked and the to-do name is crossed. If it is false, the checkbox is unmarked and the to-do name is not crossed. You can click on the pencil icon to update the to-do's values. It opens a modal that allows the user to change its information; this process has the same validations as creating a new to-do. The last interaction is the trash can icon. This simply deletes an item from both the frontend and the backend.
+
+<p align="center">
+  <img src="/assets/editTodo.png">
+</p>
+
+<p align="center">
+  <img src="/assets/doneUndone.png">
+</p>
+
+#### ***Button.js***
+This component is used both in the main interface and in the modals that are displayed now and then. It is only defined to style it. The ```Button.js``` component does not have any specific functionality but to be a styled button. The functionality is set with the ```onClick()``` event.
+
+```js
+import React from 'react';
+import styles from '../styles/modules/button.module.scss';
+import { getClasses } from '../utils/getClasses';
+
+const buttonTypes = { primary: 'primary', secondary: 'secondary' };
+
+function Button({ children, type, variant, ...rest }) {
+  return (
+    <button
+      className={getClasses([
+        styles.button,
+        styles[`button--${buttonTypes[variant]}`],
+      ])}
+      type={type === 'submit' ? 'submit' : 'button'}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+}
+
+function SelectButton({ children, ...rest }) {
+  return (
+    <select
+      className={getClasses([styles.button, styles.button__select])}
+      {...rest}
+    >
+      {children}
+    </select>
+  );
+}
+
+export { SelectButton };
+export default Button;
+```
+
+Example of onClick event:
+
+```html
+<Button variant="primary" onClick={() => setModalOpen(true)}>
+    Add to-do
+</Button>
+```
+
+#### ***PaginationController.js***
+As the file's name implies, it controls the UI's pagination. Meaning that you can request a change of page to the interface. If you click the button that says 'Next Page', it sends a request through ```refreshData``` method with the passed filters and sorting, and the backend returns the correct page. Same goes if you click the 'Previous page' button.
+
+<p align="center">
+  <img src="/assets/page.png">
+</p>
+
+```js
+import React from 'react';
+import styles from '../styles/modules/app.module.scss';
+import Button from './Button';
+
+function PaginationController({ page, refreshData, fp, fs, ft, sort }) {
+  const updatePage = (value) => {
+    const newpage = page + value;
+    refreshData(fp, fs, ft, sort, newpage);
+  };
+
+  return (
+    <div className={styles.paginationController}>
+      <Button variant="secondary" onClick={() => updatePage(-1)}>
+        Previous Page
+      </Button>
+      <p className={styles.pageNumber}>Page: {page}</p>
+      <Button variant="secondary" onClick={() => updatePage(1)}>
+        Next Page
+      </Button>
+    </div>
+  );
+}
+
+export default PaginationController;
+```
+
+#### ***Metrics.js***
+This class is the one that makes requests to the backend regarding how long does it take in average to complete a to-do with any priority. If you change the status of any displayed item, it will automatically update to show the correct values. The user does not directly interact with this component. The component just displays the response based on a request to the backend.
+
+<p align="center">
+  <img src="/assets/metrics.png">
+</p>
+
+
+```js
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import styles from '../styles/modules/todoItem.module.scss';
+
+function Metrics() {
+  const [all, setAll] = useState(0.0);
+  const [low, setLow] = useState(0.0);
+  const [medium, setMedium] = useState(0.0);
+  const [high, setHigh] = useState(0.0);
+
+  const getAllData = () => {
+    axios
+      .get('http://localhost:9090/todos/getAverage/all')
+      .then((response) => {
+        setAll(response.data);
+      })
+      .catch((error) => {
+        console.log('ERROR:');
+        console.log(error);
+      });
+  };
+
+  const getLowData = () => {
+    axios
+      .get('http://localhost:9090/todos/getAverage/Low')
+      .then((response) => {
+        setLow(response.data);
+      })
+      .catch((error) => {
+        console.log('ERROR:');
+        console.log(error);
+      });
+  };
+
+  const getMediumData = () => {
+    axios
+      .get('http://localhost:9090/todos/getAverage/Medium')
+      .then((response) => {
+        setMedium(response.data);
+      })
+      .catch((error) => {
+        console.log('ERROR:');
+        console.log(error);
+      });
+  };
+
+  const getHighData = () => {
+    axios
+      .get('http://localhost:9090/todos/getAverage/High')
+      .then((response) => {
+        setHigh(response.data);
+      })
+      .catch((error) => {
+        console.log('ERROR:');
+        console.log(error);
+      });
+  };
+
+  const refreshData = () => {
+    getAllData();
+    getLowData();
+    getMediumData();
+    getHighData();
+  };
+
+  useEffect(() => {
+    refreshData();
+  }, [refreshData]);
+
+  return (
+    <div className={styles.metrics}>
+      <div className={styles.all}>
+        <h3>Average time to finish all tasks</h3>
+        <br />
+        <h4> {all} days</h4>
+      </div>
+      <div className={styles.priority}>
+        <h3>Average time to finish tasks by priority</h3>
+        <br />
+        <h4>Low: {low} days</h4>
+        <h4>Medium: {medium} days</h4>
+        <h4>High: {high} days</h4>
+      </div>
+    </div>
+  );
+}
+
+export default Metrics;
+```
+
+
 - avg
+- tests si da tiempo
