@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "Week 9 -- Great things come from hard work and perseverance. No Excuses."
+date:   2022-11-28 10:14:38 -0700
+categories: jekyll update
+---
+Learning new technologies and tools is always a challenge. I strongly believe in learning by doing, so in order for me to properly understand the basics of any new thing (in this case React framework and Spring framework), I have to create a project using new technologies.
+
+It took me a month to finish this 'Todo App'. I had to learn the basics of SpringBoot in order to build a nice API. Thie backend contains the model, the service, the controller and the tests. Also, I had to learn the basics of React to build a nice UI and test it. I worked on both sides of the app at the same time in order to check if requests were sent properly to the backend and it sent responds to the frontend.
+
+What I learned during the process of developing this project was not only regarding coding and new technologies, I also learned how to ask for help, how to organize my time and also I believe that I improved my teamwork and communication skills. Soft skills are something that anyone should always try to improve in order to always become a better version of themselves.
+
+### What could I have done different?
+Regarding coding, probably I should've first defined a roadmap of what was I going to do and how was I going to do it. Having a structured plan is always better because you just have to follow what you already planned. Also, I belive that, even though I organized my time well, it could have been better. I should have set aside more time for coding tests for both frontend and backend.
+
+Finally the project is done, after a month of hard-work, nights without some sleep, after many questions asked. I learned a lot and I am looking forward on what comes next in my path of becoming a succesful software engineer and developer.
