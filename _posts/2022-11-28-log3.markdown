@@ -667,6 +667,8 @@ function Metrics() {
 export default Metrics;
 ```
 
+### ***What could be done in order to improve the frontend's performance?***
+- To have a specific component/file that handles all requests instead of making requests in different components.
+- To handle what happens if the backend server is not running.
+- Optimize components.
 
-- avg
-- tests si da tiempo
