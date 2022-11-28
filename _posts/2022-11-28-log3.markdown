@@ -668,6 +668,7 @@ export default Metrics;
 ```
 
 ### ***What could be done in order to improve the frontend's performance?***
+- The frontend does not have a lot of testing classes. It has a few that test if a value is rendered correctly and that's it. So adding more testing classes would be a big improvement.
 - To have a specific component/file that handles all requests instead of making requests in different components.
 - To handle what happens if the backend server is not running.
 - Optimize components.
