@@ -4,4 +4,13 @@ title:  "Week 10 -- Fast as lightning"
 date:   2022-12-5 10:14:38 -0700
 categories: jekyll update
 ---
-Week 10
+This week I did not have as much workload as I did in the previous 3 or 4 weeks. My task was to create a lightning talk, which consisted of a presentation in which I talked about anything related to tech in no more than 10 minutes. I opted for the topic of 'Java for backend'. I chose this topic because while I was developing the 'To-do App' I realized how good java was to create a backend app. I also talked about a few frameworks that eased the process of creating a backend, with Spring being the one most used by the community. I had the opportunity of working with this framework and I can assure that it is a great. and complete, tool.
+
+### About speaking in public
+Even though English is not my first language, I do not have any problem presenting in English. I belive I speak it fluently, with good pronunciation, and also I am not shy, so in general terms, public speaking is not a problem for me. Nonetheless, we shared a file with the audience in which they could share their feedback with us so that we could improve some aspects of our presentation for the next one.
+
+### What could I improve?
+I speak way to fast, and it is not related to speaking in English, no matter what language am I speaking, I have the bad habit of speaking way to fast. To improve this, I should take punctuation more into account. Also, I should come up with better ways to end my presentation in order for the audience to see a proper 'closure'.
+
+### What are my tasks for this week?
+I have to prepare another lightning talk with some modifications compared to the previous one. Also, I have to continue with the hyperskill courses assigned to me a couple of weeks ago. At the moment, that is all that I have pending.
