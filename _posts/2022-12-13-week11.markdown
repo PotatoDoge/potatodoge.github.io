@@ -1,0 +1,6 @@
+---
+layout: post
+title:  "Week 11 -- If you can't write your message in a sentence, you can't say it in an hour."
+date:   2022-12-13 12:14:38 -0700
+categories: jekyll update
+---

@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Week 12 -- Talking, talking, talking. "
+date:   2022-12-19 08:14:38 -0700
+categories: jekyll update
+---
+
+This weeks have been full of new knowledge regarding public speaking. I had to prepare to give a small informative presentation about any topic that I wanted. I believe that speaking of fundamental topics about coding is always important. Now, when you are preparing a presentation, to prepare how you are going to say what you are going to say is as important as what are you going to say. You have to grab the audience's attention. There are several techniques with which you can achieve this. For example, starting the presentation with a famous quote, or maybe a joke, or just by presenting yourself, it depends on what makes you comfortable.
+
+### Key points of a presentation
+To deliver a presentation is not only talking about the topic itself. You must learn how to communicate properly what you are trying to say, how to get to the key points and present them as clear as possible, how to grab audience's attention, how to properly end the presentation, among other key points to take into account.
+- Communicate the message properly:  Put your ideas in order so that they have a clear and concise structure
+- Present key points as clear as possible: Emphasize the most important points of your message
+- Grabbing audience's attention: Find a technique that works to retain audience's attention
+- Concluding a presentation: The end of the presentation has to summarize the message in a clear and brief way.
+
+### What can be improved?
+Even though you believe that you excel at something, there is always room for improvement. I do not think that I am the best at giving talks, I think that I am good at it, but I definitely must improve some aspects. There are times in which I do not give a proper closure to the presentation, or I do not deliver the best introduction, so I think that I have to improve my presentations' structure. 
