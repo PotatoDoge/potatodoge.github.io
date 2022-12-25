@@ -2,7 +2,7 @@
 layout: post
 title:  "Week 5 -- High achievement always takes place in the framework of high expectation."
 date:   2022-10-31 12:14:38 -0700
-categories: jekyll update
+category: weekly
 ---
 
 This week was not as laborious as the previous ones. By Wednesday we were assgined a new project. This project is about creating a simple "to-do" app. It consists of coding the backend (API) using java and spring framework, and coding the frontend using React framework. I previously have made a few projects with Spring framework, so I know my ways around it, but regarding React I do not have any experience at all, and to be honest I am really excited to getting to learn and to work with this tool.

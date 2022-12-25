@@ -2,7 +2,7 @@
 layout: post
 title:  "Week 6 -- People who say it cannot be done should not interrupt those who are doing it."
 date:   2022-11-7 12:14:38 -0700
-categories: jekyll update
+category: weekly
 ---
 
 I have been working on the project that was mentioned in last week's post, and it surely has been challenging. We were given a month to complete the frontend, the backend and any test regarding both ends. The frontend is the part that has been giving me a lot of trouble, mostly because I was not familiarized with React. So basically I have been learning by doing this project, which in my opinion is the best way of learning a new tool.

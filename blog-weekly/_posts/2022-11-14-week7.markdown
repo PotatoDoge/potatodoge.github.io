@@ -2,7 +2,7 @@
 layout: post
 title:  "Week 7 -- Hard work pays off."
 date:   2022-11-14 12:14:38 -0700
-categories: jekyll update
+category: weekly
 ---
 
 3 weeks ago I started to work on a 'To-do' app. I had to create the frontend using React framework, and for the backend I had to use Springboot and Java. I had previous knowledge regarding Springboot, Java and simple APIs, but as of React, I had little to none knowledge of it. I expected to be a challenge for me, a way of learning new tools and technologies, and I was right with both assumptions.

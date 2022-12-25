@@ -2,7 +2,7 @@
 layout: post
 title:  "Week 1 -- No river can return to its source, yet all rivers must have a beginning."
 date:   2022-10-03 12:14:38 -0700
-categories: jekyll update
+category: weekly
 ---
 
 Starting a new job is never easy. You could compare this situation with your first day at a new school, where you do not know anyone, where you do not know how things work there and especially you do not know how things will be for you; hopefully easy. The secret to being successful is to always give your best, put in your best effort in whatever you are doing and to never give up no matter what. 

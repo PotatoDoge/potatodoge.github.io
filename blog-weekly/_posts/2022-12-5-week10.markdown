@@ -2,7 +2,7 @@
 layout: post
 title:  "Week 10 -- Fast as lightning"
 date:   2022-12-5 10:14:38 -0700
-categories: jekyll update
+category: weekly
 ---
 This week I did not have as much workload as I did in the previous 3 or 4 weeks. My task was to create a lightning talk, which consisted of a presentation in which I talked about anything related to tech in no more than 10 minutes. I opted for the topic of 'Java for backend'. I chose this topic because while I was developing the 'To-do App' I realized how good java was to create a backend app. I also talked about a few frameworks that eased the process of creating a backend, with Spring being the one most used by the community. I had the opportunity of working with this framework and I can assure that it is a great. and complete, tool.
 

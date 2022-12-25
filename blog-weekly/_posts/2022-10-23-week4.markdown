@@ -2,7 +2,7 @@
 layout: post
 title:  "Week 4 -- With hard work and effort, you can achieve anything."
 date:   2022-10-23 12:14:38 -0700
-categories: jekyll update
+category: weekly
 ---
 
 This has been the hardest week since I joined Encora. Two weeks ago we were given some tasks that seemed not really that hard, but oh... we were so wrong. For the last two weeks, the Apprentice team and I worked really hard and thoroughly in order to complete all of them. Some of the tasks were a little bit more challenging than the others, but at the end what mattered was finishing all on time.

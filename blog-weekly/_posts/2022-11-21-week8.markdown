@@ -2,7 +2,7 @@
 layout: post
 title:  "Week 8 -- Almost there."
 date:   2022-11-21 12:14:38 -0700
-categories: jekyll update
+category: weekly
 ---
 This week has been one in which I have learned many interesting things. As I previously posted, I was going to work in the sorting and pagination part of the app, both for the frontend and the backend. I was not sure which approach I was going to take in order to complete this tasks so I got down to work.
 

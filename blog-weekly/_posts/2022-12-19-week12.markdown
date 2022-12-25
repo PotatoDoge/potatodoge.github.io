@@ -2,7 +2,7 @@
 layout: post
 title:  "Week 12 -- Talking, talking, talking. "
 date:   2022-12-19 08:14:38 -0700
-categories: jekyll update
+category: weekly
 ---
 
 This weeks have been full of new knowledge regarding public speaking. I had to prepare to give a small informative presentation about any topic that I wanted. I believe that speaking of fundamental topics about coding is always important. Now, when you are preparing a presentation, to prepare how you are going to say what you are going to say is as important as what are you going to say. You have to grab the audience's attention. There are several techniques with which you can achieve this. For example, starting the presentation with a famous quote, or maybe a joke, or just by presenting yourself, it depends on what makes you comfortable.

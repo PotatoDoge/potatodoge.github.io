@@ -2,7 +2,7 @@
 layout: post
 title:  "Log 1 - Double or one thing."
 date:   2022-10-22 8:22:38 -0700
-categories: jekyll update
+category: log
 ---
 Coding is the easy part, what takes more time is designing the logic itself and an algorithm (set of instructions) to properly solve the problem in the best way possible, or at least in the best way that you can think of. Everyone has a unique way of thinking, a distinctive way of analyzing a problem and finding a solution, so let me explain how do I normally solve this kind of problems.
 

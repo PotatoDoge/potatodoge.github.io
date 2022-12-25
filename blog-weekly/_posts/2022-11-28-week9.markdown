@@ -2,7 +2,7 @@
 layout: post
 title:  "Week 9 -- Great things come from hard work and perseverance. No Excuses."
 date:   2022-11-28 10:14:38 -0700
-categories: jekyll update
+category: weekly
 ---
 Learning new technologies and tools is always a challenge. I strongly believe in learning by doing, so in order for me to properly understand the basics of any new thing (in this case React framework and Spring framework), I have to create a project using new technologies.
 

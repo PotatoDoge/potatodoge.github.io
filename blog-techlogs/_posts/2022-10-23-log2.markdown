@@ -2,7 +2,7 @@
 layout: post
 title:  "Log 2 - It takes two flints to make a fire."
 date:   2022-10-23 23:34:38 -0700
-categories: jekyll update
+category: log
 ---
 Learning a new syntax and getting familiarized with a new programing language is always both challenging and exciting. It is something new yet something rather familiar. This last 2 weeks, the apprentice team and I have been putting a lot of effort into solving and coding these problems. We were given 8 problems and 2 weeks to design a solution, and code it. Once it was coded, the code had to pass some tests provided by a Google Competition called 'Google Code Jam'. There were 8 problems, and for each problem we had to code it in 4 different languages: Dart, Kotlin, Python and Typescript. We are 10 in the team, so we had a meetings in which, as a team, came up with solutions and after that, everyone said which problems and in which language were they going to take upon. I took upon of 3 problems: '3D Printing' in Kotlin, 'Double or one thing' in Python and 'Equal Sum' in Dart. Up next I will give a quick overview of the problems and the solutions that we came up with.
 
